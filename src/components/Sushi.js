@@ -1,9 +1,12 @@
 import React from "react";
 
-function Sushi({ sushiItem }) {
+function Sushi({ sushiItem, handleEatSushi }) {
+  function eatSushi() {
+    handleEatSushi(sushiItem)
+  }
   return (
     <div className="sushi">
-      <div className="plate" onClick={/* Give me a callback! */ null}>
+      <div className="plate" onClick={ eatSushi }>
         {/* Tell me if this sushi has been eaten! */}
         {false ? null : (
           <img
