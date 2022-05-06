@@ -12,7 +12,7 @@ function SushiContainer({ allSushi }) {
       if(sushi.id === i){
         displayingSushis.push(sushi)
       }
-      if(i > 100) {
+      if(i > allSushi.length) {
         setStartIndex(1)
       }
     }
