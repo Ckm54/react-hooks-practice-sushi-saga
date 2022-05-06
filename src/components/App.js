@@ -7,6 +7,7 @@ const API = "http://localhost:3001/sushis";
 function App() {
 
   const [sushiData, setSushiData] = useState([]);
+  const [sushiEaten, setSushiEaten] = useState([])
 
   useEffect(() => {
     fetch(API)
@@ -35,12 +36,13 @@ function App() {
         }
       })
       setSushiData(updatedList)
+      setSushiEaten([...sushiEaten, "eat"])
     })
   }
   return (
     <div className="app">
       <SushiContainer allSushi={sushiData} eatSushi={handleEatSushi}/>
-      <Table />
+      <Table plates={sushiEaten}/>
     </div>
   );
 }
