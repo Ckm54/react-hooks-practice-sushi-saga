@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MoreButton from "./MoreButton";
 import Sushi from "./Sushi"
 
-function SushiContainer({ allSushi }) {
+function SushiContainer({ allSushi, eatSushi }) {
 
   const [startIndex, setStartIndex] = useState(1)
 
@@ -24,7 +24,7 @@ function SushiContainer({ allSushi }) {
     // console.log(displayingSushis)
   }
 
-  const sushiContainer = displayingSushis.map((sushi) => <Sushi key={sushi.id} sushiItem={sushi}/>)
+  const sushiContainer = displayingSushis.map((sushi) => <Sushi key={sushi.id} sushiItem={sushi} handleEatSushi={eatSushi}/>)
   
   return (
     <div className="belt">
