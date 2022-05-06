@@ -12,6 +12,9 @@ function SushiContainer({ allSushi }) {
       if(sushi.id === i){
         displayingSushis.push(sushi)
       }
+      if(i > 100) {
+        setStartIndex(1)
+      }
     }
   })
 
