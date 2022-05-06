@@ -1,6 +1,7 @@
 import React from "react";
 
 function Sushi({ sushiItem, handleEatSushi }) {
+
   function eatSushi() {
     handleEatSushi(sushiItem)
   }
@@ -8,7 +9,7 @@ function Sushi({ sushiItem, handleEatSushi }) {
     <div className="sushi">
       <div className="plate" onClick={ eatSushi }>
         {/* Tell me if this sushi has been eaten! */}
-        {false ? null : (
+        {sushiItem['img_url'] === "" ? null : (
           <img
             src={sushiItem['img_url']}
             alt={sushiItem.name}
