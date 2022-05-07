@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
-function Sushi({ sushiItem, handleEatSushi }) {
+function Sushi({ sushiItem, handleEatSushi,cashRemaining }) {
 
   const [isEaten, setIsEaten] = useState(sushiItem['img_url'])
   
   function eatSushi() {
-    if(isEaten !== ""){
-      handleEatSushi(sushiItem)
-    }
-    setIsEaten("")
+    if (sushiItem.price < cashRemaining){
+      if(isEaten !== ""){
+        handleEatSushi(sushiItem)
+      }
+      setIsEaten("")
+    } 
   }
   return (
     <div className="sushi">
