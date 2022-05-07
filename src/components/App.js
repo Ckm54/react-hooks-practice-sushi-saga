@@ -3,16 +3,25 @@ import SushiContainer from "./SushiContainer";
 import Table from "./Table";
 
 const API = "http://localhost:3001/sushis";
+const CASH = "http://localhost:3001/cash";
 
 function App() {
 
   const [sushiData, setSushiData] = useState([]);
   const [sushiEaten, setSushiEaten] = useState([])
+  const [cashAvailable, setCashAvailable] = useState([])
+  // const [remaining, setRemaining] = useState(0)
 
   useEffect(() => {
     fetch(API)
     .then((res) => res.json())
     .then((sushis) => setSushiData(sushis))
+  }, []);
+
+  useEffect(() => {
+    fetch (CASH)
+    .then((res) => res.json())
+    .then((amount) => setCashAvailable(amount.total))
   }, [])
 
   function handleEatSushi(sushi) {
@@ -28,6 +37,7 @@ function App() {
     })
     .then((res) => res.json())
     .then((updatedSushi) => {
+      setCashAvailable(cashAvailable - updatedSushi.price)
       const updatedList = sushiData.map((sushi) => {
         if(sushi.id === updatedSushi.id) {
           return updatedSushi
@@ -41,8 +51,8 @@ function App() {
   }
   return (
     <div className="app">
-      <SushiContainer allSushi={sushiData} eatSushi={handleEatSushi}/>
-      <Table plates={sushiEaten}/>
+      <SushiContainer allSushi={sushiData} eatSushi={handleEatSushi} cash={cashAvailable}/>
+      <Table plates={sushiEaten} totalCash={cashAvailable}/>
     </div>
   );
 }
