@@ -1,9 +1,8 @@
 {
-  "cash" : [
+  "cash" :
     {
       "total": 100
-    }
-  ],
+    },
   "sushis": [
     {
       "id": 1,
