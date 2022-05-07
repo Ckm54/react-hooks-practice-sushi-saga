@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Sushi({ sushiItem, handleEatSushi }) {
 
+  const [isEaten, setIsEaten] = useState(sushiItem['img_url'])
+  
   function eatSushi() {
-    handleEatSushi(sushiItem)
+    if(isEaten !== ""){
+      handleEatSushi(sushiItem)
+    }
+    setIsEaten("")
   }
   return (
     <div className="sushi">
       <div className="plate" onClick={ eatSushi }>
         {/* Tell me if this sushi has been eaten! */}
-        {sushiItem['img_url'] === "" ? null : (
+        {isEaten === "" ? null : (
           <img
             src={sushiItem['img_url']}
             alt={sushiItem.name}
