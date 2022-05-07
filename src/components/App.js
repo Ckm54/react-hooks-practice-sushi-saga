@@ -49,10 +49,24 @@ function App() {
       setSushiEaten([...sushiEaten, "eat"])
     })
   }
+
+  function handleAddCash(input) {
+    fetch(CASH, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        total: cashAvailable+input
+      })
+    })
+    .then((res) => res.json())
+    .then((updated) => setCashAvailable(updated.total))
+  }
   return (
     <div className="app">
       <SushiContainer allSushi={sushiData} eatSushi={handleEatSushi} cash={cashAvailable}/>
-      <Table plates={sushiEaten} totalCash={cashAvailable}/>
+      <Table plates={sushiEaten} totalCash={cashAvailable} addCash={handleAddCash}/>
     </div>
   );
 }
